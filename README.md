@@ -8,7 +8,8 @@ It uses:
 - 🧠 **Google Gemini Pro** – for answering and main brain
 - 📦 **LlamaIndex** – for document parsing and all framework
 - 🧬 **HuggingFace Embeddings**
-- 💾 **ChromaDB** – for vector embedding storage 
+- 💾 **ChromaDB** – for vector embedding storage
+- ✅ Query answers using Google Gemini (1.5 Flash) LLM  
 - 🌐 **Gradio** – web-based chat interface
 
 ---
@@ -39,10 +40,12 @@ To run it, set this in your environment:
 
 GEMINI_API_KEY = your_api_key_here
 
-# 🧪 Demo
+## 📽️ Live Demo
 
-Live version deployed on Hugging Face:  
-🔗 [Click to Chat with Document GPT]([(https://huggingface.co/spaces/muhammadukasha/Ukasha_DocumentGPT))
+🟢 Try it out now:  
+👉 [Document GPT – Live Space on Hugging Face](https://huggingface.co/spaces/muhammadukasha/Ukasha_DocumentGPT)
+
+---
 
 > Built with ❤️ by Ukasha – passionate about AI, Chatbots & Innovation!
 
