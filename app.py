@@ -145,3 +145,4 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Document GPT by Muhammad Ukasha Gh
     )
 
 demo.launch()
+
