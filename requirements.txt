@@ -1,12 +1,7 @@
-llama-index
-llama-index-embeddings-huggingface
-sentence-transformers
-gradio
-chromadb
-llama-index-vector-stores-chroma
 llama-index>=0.10.30
 llama-index-llms-google-genai
-google-genai
+sentence-transformers
+chromadb
+streamlit
 pypdf
-python-docx
-
+python-dotenv
