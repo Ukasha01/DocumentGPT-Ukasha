@@ -5,6 +5,8 @@ gradio
 chromadb
 llama-index-vector-stores-chroma
 llama-index-llms-gemini
-google-generativeai
+llama-index>=0.10.60
+llama-index-llms-google-genai
+google-genai
 pypdf
 python-docx
