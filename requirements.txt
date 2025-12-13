@@ -1,7 +1,21 @@
-llama-index>=0.10.30
-llama-index-llms-google-genai
-sentence-transformers
-chromadb
-streamlit
-pypdf
-python-dotenv
+# Core LlamaIndex
+llama-index==0.9.42
+
+# Google Gemini SDK (latest unified SDK)
+google-generativeai==0.1.6
+
+# ChromaDB for vector storage
+chromadb==0.4.1
+
+# HuggingFace embeddings
+sentence-transformers==2.2.2
+transformers==4.34.0
+torch>=2.0.1
+
+# Gradio UI
+gradio==3.47.0
+
+# Optional utilities
+pandas==2.1.1
+numpy==1.26.2
+python-multipart==0.0.6  # For file uploads
