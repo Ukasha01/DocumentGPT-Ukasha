@@ -7,7 +7,6 @@ from chromadb import PersistentClient
 
 import google.generativeai as genai
 from llama_index.llms.google_genai import GoogleGenAI
-
 import gradio as gr
 
 global embed_model, db_client, collection_name, llm, current_index, current_query_engine
@@ -32,7 +31,7 @@ if not gemini_api_key:
 genai.configure(api_key=gemini_api_key)
 
 llm = GoogleGenAI(
-    model="gemini-1.5-flash",
+    model="gemini-2.5-flash",
     api_key=GOOGLE_API_KEY
 ),
 system_prompt=(
@@ -145,4 +144,5 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Document GPT by Muhammad Ukasha Gh
     )
 
 demo.launch()
+
 
