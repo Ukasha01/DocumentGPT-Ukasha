@@ -4,9 +4,9 @@ sentence-transformers
 gradio
 chromadb
 llama-index-vector-stores-chroma
-llama-index-llms-gemini
-llama-index>=0.10.60
+llama-index>=0.10.30
 llama-index-llms-google-genai
 google-genai
 pypdf
 python-docx
+
