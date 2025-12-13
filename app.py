@@ -6,7 +6,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from chromadb import PersistentClient
 
 import google.generativeai as genai
-from llama_index.llms.gemini import Gemini
+from llama_index.llms.google_genai import GoogleGenAI
 
 import gradio as gr
 
@@ -26,15 +26,16 @@ collection_name = "my_notes_collection"
 print(f"ChromaDB collection name set to: {collection_name}.\n")
 
 print("Initializing Google Gemini LLM...")
-gemini_api_key = os.environ.get("GEMINI_API_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 if not gemini_api_key:
     raise ValueError("GEMINI_API_KEY not found in environment variables. Please set it in Hugging Face secrets.")
 genai.configure(api_key=gemini_api_key)
 
-llm = Gemini(
+llm = GoogleGenAI(
     model="gemini-1.5-flash",
-    api_key=gemini_api_key,
-    system_prompt=(
+    api_key=GOOGLE_API_KEY
+),
+system_prompt=(
         "You are a highly professional, polite, and helpful AI assistant designed to answer questions "
         "only based on the provided document context. "
         "Your responses should be concise, clear, and directly address the user's query. "
