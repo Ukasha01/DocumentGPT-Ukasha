@@ -1,12 +1,10 @@
 import os
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
-from llama_index.core.schema import Document
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from chromadb import PersistentClient
 
-import google.generativeai as genai
-from llama_index.llms.google_genai import GoogleGenAI
+from llama_index.llms.google_genai import GoogleGemini
 import gradio as gr
 
 global embed_model, db_client, collection_name, llm, current_index, current_query_engine
@@ -16,6 +14,7 @@ current_query_engine = None
 embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")
 print(f"Embedding model '{embed_model.model_name}' loaded successfully.\n")
 
+
 CHROMA_PATH = "chroma_db_data"
 print(f"Initializing ChromaDB at path: {CHROMA_PATH}")
 db_client = PersistentClient(path=CHROMA_PATH)
@@ -24,17 +23,16 @@ print("ChromaDB client initialized.")
 collection_name = "my_notes_collection"
 print(f"ChromaDB collection name set to: {collection_name}.\n")
 
+
 print("Initializing Google Gemini LLM...")
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-if not gemini_api_key:
-    raise ValueError("GEMINI_API_KEY not found in environment variables. Please set it in Hugging Face secrets.")
-genai.configure(api_key=gemini_api_key)
+if not GOOGLE_API_KEY:
+    raise ValueError("GOOGLE_API_KEY not found in environment variables. Please set it in Hugging Face secrets.")
 
-llm = GoogleGenAI(
-    model="gemini-2.5-flash",
-    api_key=GOOGLE_API_KEY
-),
-system_prompt=(
+llm = GoogleGemini(
+    model="gemini-2.5-flash",  
+    api_key=GOOGLE_API_KEY,
+    system_prompt=(
         "You are a highly professional, polite, and helpful AI assistant designed to answer questions "
         "only based on the provided document context. "
         "Your responses should be concise, clear, and directly address the user's query. "
@@ -44,7 +42,7 @@ system_prompt=(
         "Use simple English, easy to understand for a general audience, as per Pakistani standards for clarity. "
         "Always start your very first response after a document upload with a warm greeting relevant to the document, "
         "e.g., 'Hello! I've processed your document. How can I help you today?'"
-    ),
+    )
 )
 print("Google Gemini LLM loaded successfully.\n")
 
@@ -84,7 +82,6 @@ def process_file_and_initialize_index(file_obj):
     print("Index and query engine initialized.\n")
 
     return [[None, "Hello! I've successfully processed your document(s). How can I assist you today?"]], []
-
 
 def chat_with_document(message, chat_history):
     global current_index, current_query_engine
@@ -144,5 +141,3 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Document GPT by Muhammad Ukasha Gh
     )
 
 demo.launch()
-
-
